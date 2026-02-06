@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Mehak</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#12001f,#2a0033,#5a003f);
+font-family: "Segoe UI", system-ui, sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+color:#fff;
+}
+
+.backglow{
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at 20% 30%, #ff5fa133 0%, transparent 45%),
+radial-gradient(circle at 80% 70%, #a855f733 0%, transparent 45%);
+filter:blur(80px);
+}
+
+.card{
+position:relative;
+background:rgba(255,255,255,.07);
+backdrop-filter:blur(28px);
+border-radius:32px;
+padding:70px 90px;
+box-shadow:0 40px 140px rgba(255,0,120,.65);
+text-align:center;
+z-index:1;
+animation:float 6s ease-in-out infinite alternate;
+}
+
+@keyframes float{
+to{transform:translateY(-18px)}
+}
+
+h1{
+font-size:56px;
+font-weight:600;
+letter-spacing:.5px;
+background:linear-gradient(90deg,#ffffff,#ffc0e5);
+-webkit-background-clip:text;
+color:transparent;
+margin:0;
+}
+
+.divider{
+width:110px;
+height:2px;
+margin:26px auto 40px;
+background:linear-gradient(90deg,#ff5fa1,#c77dff);
+}
+
+/* Professional bouquet */
+.bouquet{
+width:160px;
+height:160px;
+margin:0 auto 35px;
+position:relative;
+}
+
+.petal{
+position:absolute;
+width:65px;
+height:65px;
+border-radius:50%;
+background:linear-gradient(135deg,#ff7eb3,#d81b60);
+box-shadow:0 0 20px rgba(255,100,170,.6);
+}
+
+.p1{top:0;left:48px}
+.p2{top:40px;left:10px}
+.p3{top:40px;right:10px}
+.p4{top:85px;left:45px}
+.center{
+background:linear-gradient(135deg,#ffd1e8,#ff8ac2);
+}
+
+.wrap{
+position:absolute;
+bottom:-35px;
+left:58px;
+width:44px;
+height:80px;
+background:linear-gradient(#3ddc84,#1e9c5a);
+border-radius:0 0 22px 22px;
+}
+
+/* Text */
+.message{
+font-size:22px;
+line-height:1.6;
+opacity:.95;
+max-width:420px;
+}
+
+/* Button */
+button{
+margin-top:45px;
+padding:16px 52px;
+border:none;
+border-radius:40px;
+font-size:20px;
+font-weight:500;
+background:linear-gradient(90deg,#ff5fa1,#c77dff);
+color:white;
+cursor:pointer;
+box-shadow:0 16px 42px rgba(255,90,170,.6);
+transition:.25s;
+}
+
+button:hover{
+transform:translateY(-3px) scale(1.04);
+}
+
+/* Elegant celebration particles */
+.spark{
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+background:#ffc0e5;
+animation:pop 1.6s ease-out forwards;
+}
+
+@keyframes pop{
+to{
+transform:translate(var(--x),var(--y));
+opacity:0;
+}
+}
+
+/* Big greeting */
+.bigText{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(.7);
+font-size:60px;
+font-weight:600;
+color:#ffd1ea;
+text-shadow:0 0 35px rgba(255,140,200,.9);
+opacity:0;
+transition:all .9s ease;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="backglow"></div>
+
+<div class="card">
+
+<h1>Happy Rose Day, {{ name }}</h1>
+<div class="divider"></div>
+
+<!-- Bouquet -->
+<div class="bouquet">
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="petal p3"></div>
+  <div class="petal p4"></div>
+  <div class="petal center"></div>
+  <div class="wrap"></div>
+</div>
+
+<div class="message">
+Mehak, your beautiful curly hair and warm smile  
+make every moment brighter.  
+This bouquet is a small piece of my love for you.
+</div>
+
+<button onclick="celebrate()">Accept the Bouquet</button>
+
+</div>
+
+<script>
+let greeted=false;
+
+function celebrate(){
+
+  if(navigator.vibrate) navigator.vibrate([35,25,35]);
+
+  if(!greeted){
+    showGreeting();
+    greeted=true;
+  }
+
+  for(let i=0;i<120;i++){
+    const s=document.createElement("div");
+    s.className="spark";
+    s.style.left="50vw";
+    s.style.top="50vh";
+    s.style.setProperty("--x",(Math.random()-0.5)*900+"px");
+    s.style.setProperty("--y",(Math.random()-0.5)*700+"px");
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1600);
+  }
+}
+
+function showGreeting(){
+  const g=document.createElement("div");
+  g.className="bigText";
+  g.innerText="Happy Rose Day Mehak 💖";
+  document.body.appendChild(g);
+
+  setTimeout(()=>{
+    g.style.opacity="1";
+    g.style.transform="translate(-50%,-50%) scale(1)";
+  },60);
+
+  setTimeout(()=>g.remove(),3200);
+}
+</script>
+
+</body>
+</html>
